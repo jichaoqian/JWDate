@@ -82,7 +82,15 @@ struct doubi {
         case 11:
             return 30;
         case 2:// 需要判断是否是闰年
+        {
+            if (year % 4 == 0 && year % 100 != 0) { // 普通年份，非100整数倍
+                return 29;
+            }
+            if (year % 400 == 0) { // 世纪年份
+                return 29;
+            }
             return 28;
+        }
         default:
             return 30;
             break;
