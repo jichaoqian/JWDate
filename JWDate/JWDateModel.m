@@ -81,7 +81,7 @@ struct doubi {
         case 9:
         case 11:
             return 30;
-        case 2:
+        case 2:// 需要判断是否是闰年
             return 28;
         default:
             return 30;
