@@ -58,13 +58,13 @@
 
 - (void)dataHandle:(NSString *)dateStr {
     [_dayArray removeAllObjects];
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//    [formatter setDateFormat:@"yyyy-MM"];
-//    NSString *dateStr2 = [formatter stringFromDate:[NSDate date]];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *dateStr2 = [formatter stringFromDate:[NSDate date]];
     
     // 补前面的空白 每个月第一天的日期？？？
-    NSInteger firstWeekDay = [JWDateModel weekDayMonthOfFirstDayFromDate:[NSDate date]];
-
+//    NSInteger firstWeekDay = [JWDateModel weekDayMonthOfFirstDayFromDate:[NSDate date]];
+    NSInteger firstWeekDay = [JWDateModel weekDayMonthOfFirstDayFromStr:dateStr2];
     for (int i = 0; i<firstWeekDay; i++) {
         [_dayArray addObject:@""];
     }

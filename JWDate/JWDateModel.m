@@ -43,9 +43,17 @@ struct doubi {
     [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     [formatter setDateFormat:@"YYYY-MM-dd"];
     
-    NSDate *date = [formatter dateFromString:dateStr];
+    NSDate *newDate = [formatter dateFromString:dateStr];
+    
+    // test
+    NSDate *firstDate = nil;
+    double interval = 0;
 
-    return [self weekDayMonthOfFirstDayFromDate:date];
+    BOOL OK = [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitMonth startDate:& firstDate interval:&interval forDate:newDate];
+    if (!OK) {
+        return 0;
+    }
+    return [self weekDayMonthOfFirstDayFromDate:firstDate];
 }
 
 + (NSInteger)weekDayMonthOfFirstDayFromDate:(NSDate *)date
