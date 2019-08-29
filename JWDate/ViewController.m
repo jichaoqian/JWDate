@@ -54,6 +54,37 @@
     [_collectionView setCollectionViewLayout:flowLayout];
     
     [self dataHandle:[[NSDate date] description]];
+    [self charReverse];
+}
+
+- (void)charReverse
+{
+    NSString * string2 = @"hello,nanyun!";
+    NSLog(@"%@", string2);
+    NSMutableString *reverSt = [NSMutableString stringWithString:string2];
+    
+    for (NSInteger i =  0; i< string2.length /2; i++) {
+        [reverSt replaceCharactersInRange:NSMakeRange(i, 1) withString:[string2 substringWithRange:NSMakeRange(string2.length - i - 1, 1)]];
+        [reverSt replaceCharactersInRange:NSMakeRange(string2.length - i -1, 1) withString:[string2 substringWithRange:NSMakeRange(i, 1)]];
+    }
+    
+    NSLog(@"自己写的算法哈哈哈>>>%@", reverSt);
+    
+    // C的写法
+    char cCh[100];
+//    memcpy(<#void *__dst#>, <#const void *__src#>, <#size_t __n#>)
+    memcpy(cCh, [string2 cStringUsingEncoding:NSUTF8StringEncoding], [string2 length]);
+    
+    // 设置两个指针，一个指向字符串开头，一个指向字符串末尾
+    char * beginC = cCh;
+    char *endC = cCh + strlen(cCh) - 1;
+    // 遍历字符数组，逐步交换两个指针所指向的内容，同时移动指针到相对应的下个位置，直至begin>end
+    while (beginC< endC) {
+        char temp = *beginC;
+        *(beginC++) = *endC;
+        *(endC--) = temp;
+    }
+    NSLog(@"zizizjiizj>>>%s", cCh);
 }
 
 - (void)dataHandle:(NSString *)dateStr {
